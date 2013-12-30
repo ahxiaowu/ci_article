@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>显示文章</title>
+	<style>
+body{
+	font-size: 14px;
+	margin: 0px;padding: 0px;
+}
+	</style>
+	<script src="<?php echo base_url('public/ueditor/ueditor.all.min.js'); ?>"></script>
+	<script>
+	window.UEDITOR_HOME_URL = "<?php echo base_url('public/ueditor') ?>";
+	window.onload = function(){
+		/*初始化编辑器宽高*/
+		window.UEDITOR_CONFIG.initialFrameWidth  = 900;
+		window.UEDITOR_CONFIG.initialFrameHeight = 460;
+		UE.getEditor('body');
+	}
+	</script>
+	<script src="<?php echo base_url('public/ueditor/ueditor.config.js'); ?>"></script>
+</head>
+<body>
+<form action="<?php echo site_url('admin/article/send') ?>" method="post" enctype="multipart/form-data">
+<table class="table">
+	<tr>
+		<td class="th" colspan="10">发表文章</td>
+	</tr>
+	<tr>
+		<td>标题</td>
+		<td>
+			<input type="text" name="title" id="" value="<?php echo set_value('title') ?>">
+			<?php echo form_error('title','<span>','</span>'); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>类型</td>
+		<td>
+			<input type="radio" name="type" id="" value="0" <?php echo set_radio('myradio', '0',true); ?>> 普通
+			<input type="radio" name="type" id="" value="1" <?php echo set_radio('type','1'); ?>> 热门
+		</td>
+	</tr>
+	<tr>
+		<td>栏目</td>
+		<td>
+			<select name="cid" id="">
+				<?php foreach($cate as $v): ?>
+				<option value="<?php echo $v['id'] ?>" <?php echo set_select('cid',$v['id']) ?>><?php echo $v['cname'] ?></option>
+				<?php endforeach; ?>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>缩略图</td>
+		<td>
+			<input type="file" name="spic" id="">
+		</td>
+	</tr>
+	<tr>
+		<td>摘要</td>
+		<td>
+			<textarea name="desn" id="" cols="30" rows="10"><?php echo set_value('desn'); ?></textarea>
+			<?php echo form_error('desn','<span>','</span>'); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>内容</td>
+		<td>
+			<textarea name="body" id="body" cols="30" rows="10"><?php echo set_value('body') ?></textarea>
+			<?php echo form_error('body','<span>','</span>'); ?>
+		</td>		
+	</tr>
+	<tr>
+		<td colspan="10">
+			<input type="submit" value="提交信息">
+		</td>
+	</tr>
+</table>
+</form>
+</body>
+</html>

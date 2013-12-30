@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>编辑</title>
+</head>
+<body>
+<form action="<?php echo site_url('admin/cate/editSave') ?>" method="post">
+<table class="table">
+	<tr>
+		<td colspan="2">编辑栏目</td>
+	</tr>
+	<tr>
+		<td>栏目名称</td>
+		<td>
+			<input type="text" name="cname" id="" value="<?php echo $cate['cname'] ?>">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="hidden" name="id" value="<?php echo $cate['id']; ?>">
+			<input type="submit" value="修改栏目">
+		</td>
+	</tr>
+</table>
+</form>
+</body>
+</html>
